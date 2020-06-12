@@ -1,0 +1,86 @@
+create statements for the different database tables
+
+CREATE TABLE `tblanimal` (
+  `animalkey` int(11) NOT NULL AUTO_INCREMENT,
+  `eartag` varchar(45) DEFAULT NULL,
+  `experimentid` varchar(45) DEFAULT NULL,
+  `expdate` datetime DEFAULT NULL,
+  `sex` varchar(45) DEFAULT NULL,
+  `DOB` datetime DEFAULT NULL,
+  `eyesopen` datetime DEFAULT NULL,
+  `darkreared` tinyint(4) DEFAULT 0,
+  `drstart` datetime DEFAULT NULL,
+  `drstop` datetime DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `inactflag` tinyint(4) DEFAULT 0,
+  `inactmethod` varchar(45) DEFAULT NULL,
+  `inactarea` varchar(45) DEFAULT NULL,
+  `stimflag` tinyint(4) DEFAULT 0,
+  `stimmethod` varchar(45) DEFAULT NULL,
+  `stimarea` varchar(45) DEFAULT NULL,
+  `trainflag` varchar(45) DEFAULT '0',
+  `trainstim` varchar(45) DEFAULT NULL,
+  `trainmove` varchar(45) DEFAULT NULL,
+  `warningflag` tinyint(4) DEFAULT 0,
+  `warningnote` varchar(45) DEFAULT NULL,
+  `v1flag` tinyint(4) DEFAULT 0,
+  `pssflag` tinyint(4) DEFAULT 0,
+  `lgnflag` tinyint(4) DEFAULT 0,
+  `s1flag` tinyint(4) DEFAULT 0,
+  `otherflag` tinyint(4) DEFAULT 0,
+  `otherarea` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`animalkey`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `tblexperiment` (
+  `expkey` int(11) NOT NULL AUTO_INCREMENT,
+  `experimentid` varchar(45) DEFAULT NULL,
+  `unit` varchar(45) DEFAULT NULL,
+  `experiment` varchar(45) DEFAULT NULL,
+  `anadate` varchar(45) DEFAULT NULL,
+  `module` varchar(45) DEFAULT NULL,
+  `reps` int(11) DEFAULT NULL,
+  `trialrand` tinyint(4) DEFAULT NULL,
+  `lname1` varchar(45) DEFAULT NULL,
+  `lval1` varchar(45) DEFAULT NULL,
+  `lblock1` varchar(45) DEFAULT NULL,
+  `lname2` varchar(45) DEFAULT NULL,
+  `lval2` varchar(45) DEFAULT NULL,
+  `lblock2` varchar(45) DEFAULT NULL,
+  `lname3` varchar(45) DEFAULT NULL,
+  `lval3` varchar(45) DEFAULT NULL,
+  `lblock3` varchar(45) DEFAULT NULL,
+  `lname4` varchar(45) DEFAULT NULL,
+  `lval4` varchar(45) DEFAULT NULL,
+  `lblock4` varchar(45) DEFAULT NULL,
+  `lname5` varchar(45) DEFAULT NULL,
+  `lval5` varchar(45) DEFAULT NULL,
+  `lblock5` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`expkey`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `tblparams` (
+  `paramkey` int(11) NOT NULL AUTO_INCREMENT,
+  `expkey` int(11) DEFAULT NULL,
+  `pname` varchar(45) DEFAULT NULL,
+  `pval` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`paramkey`),
+  UNIQUE KEY `paramskey_UNIQUE` (`paramkey`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `tblspikes` (
+  `spikekey` int(11) NOT NULL AUTO_INCREMENT,
+  `expkey` int(11) DEFAULT NULL,
+  `loca` varchar(45) DEFAULT NULL,
+  `probea` varchar(45) DEFAULT NULL,
+  `locb` varchar(45) DEFAULT NULL,
+  `probeb` varchar(45) DEFAULT NULL,
+  `recsystem` varchar(45) DEFAULT NULL,
+  `nrsingleunit` int(11) DEFAULT NULL,
+  `nrmultiunit` int(11) DEFAULT NULL,
+  PRIMARY KEY (`spikekey`),
+  UNIQUE KEY `spikekey_UNIQUE` (`spikekey`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
