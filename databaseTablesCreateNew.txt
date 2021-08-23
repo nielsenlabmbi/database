@@ -1,0 +1,80 @@
+CREATE TABLE `animal` (
+  `idanimal` int NOT NULL,
+  `ExperimentID` varchar(45) DEFAULT NULL,
+  `age` int DEFAULT NULL,
+  `problem` tinyint DEFAULT '0',
+  `sex` varchar(45) DEFAULT NULL,
+  `ageEyeOpen` int DEFAULT NULL,
+  `rearingChange` tinyint DEFAULT '0',
+  PRIMARY KEY (`idanimal`),
+  UNIQUE KEY `idanimal_UNIQUE` (`idanimal`),
+  UNIQUE KEY `ExperimentID_UNIQUE` (`ExperimentID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `experiment` (
+  `idexperiment` int NOT NULL,
+  `idanimal` int DEFAULT NULL,
+  `unit` varchar(45) DEFAULT NULL,
+  `experiment` varchar(45) DEFAULT NULL,
+  `idManipulation` tinyint DEFAULT '0',
+  `abort` tinyint DEFAULT '0',
+  `Nsites` int DEFAULT '1',
+  `looperName1` varchar(45) DEFAULT NULL,
+  `looperVal1` varchar(45) DEFAULT NULL,
+  `looperBlock1` tinyint DEFAULT NULL,
+  `looperName2` varchar(45) DEFAULT NULL,
+  `looperVal2` varchar(45) DEFAULT NULL,
+  `looperBlock2` tinyint DEFAULT '0',
+  `looperName3` varchar(45) DEFAULT NULL,
+  `looperVal3` varchar(45) DEFAULT NULL,
+  `looperBlock3` tinyint DEFAULT '0',
+  `looperName4` varchar(45) DEFAULT NULL,
+  `looperVal4` varchar(45) DEFAULT NULL,
+  `looperBlock4` tinyint DEFAULT '0',
+  `looperName5` varchar(45) DEFAULT NULL,
+  `looperBlock5` tinyint DEFAULT '0',
+  `looperVal5` varchar(45) DEFAULT NULL,
+  `module` varchar(45) DEFAULT NULL,
+  `reps` varchar(45) DEFAULT NULL,
+  `trialrand` tinyint DEFAULT NULL,
+  PRIMARY KEY (`idexperiment`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `manipulation` (
+  `idManipulation` int NOT NULL,
+  `manipulationDescr` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idManipulation`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `params` (
+  `idparams` int NOT NULL,
+  `idexperiment` int DEFAULT NULL,
+  `pname` varchar(45) DEFAULT NULL,
+  `pval` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idparams`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `rearing` (
+  `idrearing` int NOT NULL,
+  `idanimal` int DEFAULT NULL,
+  `rearingCond` varchar(45) DEFAULT NULL,
+  `startAge` int DEFAULT NULL,
+  `stopAge` int DEFAULT NULL,
+  PRIMARY KEY (`idrearing`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `recording` (
+  `idrecording` int NOT NULL,
+  `idexperiment` int DEFAULT NULL,
+  `recSite` varchar(45) DEFAULT NULL,
+  `recProbe` varchar(45) DEFAULT NULL,
+  `spikeSorted` tinyint DEFAULT '0',
+  `NSingleUnit` int DEFAULT NULL,
+  `NMultiUnit` int DEFAULT NULL,
+  `isBlackrock` tinyint DEFAULT '0',
+  `oldSpikeFormat` tinyint DEFAULT '0',
+  PRIMARY KEY (`idrecording`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
