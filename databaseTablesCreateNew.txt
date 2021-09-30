@@ -1,24 +1,29 @@
-CREATE TABLE `animal` (
-  `idanimal` int NOT NULL,
-  `ExperimentID` varchar(45) DEFAULT NULL,
+CREATE TABLE `tblanimal` (
+  `animalKey` bigint NOT NULL AUTO_INCREMENT,
+  `eartag` varchar(45) DEFAULT NULL,
+  `experimentId` varchar(45) DEFAULT NULL,
+  `expDate` datetime DEFAULT NULL,
   `age` int DEFAULT NULL,
   `problem` tinyint DEFAULT '0',
   `sex` varchar(45) DEFAULT NULL,
   `ageEyeOpen` int DEFAULT NULL,
   `rearingChange` tinyint DEFAULT '0',
-  PRIMARY KEY (`idanimal`),
-  UNIQUE KEY `idanimal_UNIQUE` (`idanimal`),
-  UNIQUE KEY `ExperimentID_UNIQUE` (`ExperimentID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `rearingCond` varchar(45) DEFAULT NULL,
+  `rearingStartAge` int DEFAULT NULL,
+  `rearingStopAge` int DEFAULT NULL,
+  PRIMARY KEY (`animalKey`),
+  UNIQUE KEY `idanimal_UNIQUE` (`animalKey`),
+  UNIQUE KEY `ExperimentID_UNIQUE` (`experimentId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-
-CREATE TABLE `experiment` (
-  `idexperiment` int NOT NULL,
-  `idanimal` int DEFAULT NULL,
-  `unit` varchar(45) DEFAULT NULL,
-  `experiment` varchar(45) DEFAULT NULL,
-  `idManipulation` tinyint DEFAULT '0',
+CREATE TABLE `tblexperiment` (
+  `experimentKey` bigint NOT NULL AUTO_INCREMENT,
+  `experimentId` varchar(45) DEFAULT NULL,
+  `unitNr` varchar(45) DEFAULT NULL,
+  `experimentNr` varchar(45) DEFAULT NULL,
+  `expManipulation` tinyint DEFAULT '0',
   `abort` tinyint DEFAULT '0',
+  `recExists` tinyint DEFAULT NULL,
   `Nsites` int DEFAULT '1',
   `looperName1` varchar(45) DEFAULT NULL,
   `looperVal1` varchar(45) DEFAULT NULL,
@@ -38,36 +43,31 @@ CREATE TABLE `experiment` (
   `module` varchar(45) DEFAULT NULL,
   `reps` varchar(45) DEFAULT NULL,
   `trialrand` tinyint DEFAULT NULL,
-  PRIMARY KEY (`idexperiment`)
+  PRIMARY KEY (`experimentKey`),
+  KEY `experimentId_idx` (`experimentId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-
-CREATE TABLE `manipulation` (
-  `idManipulation` int NOT NULL,
+CREATE TABLE `tblmanipulation` (
+  `manipulationKey` bigint NOT NULL AUTO_INCREMENT,
+  `experimentKey` bigint DEFAULT NULL,
   `manipulationDescr` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idManipulation`)
+  `manipulationArea` varchar(45) DEFAULT NULL,
+  `manipulationStimulus` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`manipulationKey`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `params` (
-  `idparams` int NOT NULL,
-  `idexperiment` int DEFAULT NULL,
+CREATE TABLE `tblparams` (
+  `paramsKey` bigint NOT NULL AUTO_INCREMENT,
+  `experimentKey` bigint DEFAULT NULL,
   `pname` varchar(45) DEFAULT NULL,
   `pval` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idparams`)
+  PRIMARY KEY (`paramsKey`),
+  KEY `eKey2_idx` (`experimentKey`) /*!80000 INVISIBLE */
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `rearing` (
-  `idrearing` int NOT NULL,
-  `idanimal` int DEFAULT NULL,
-  `rearingCond` varchar(45) DEFAULT NULL,
-  `startAge` int DEFAULT NULL,
-  `stopAge` int DEFAULT NULL,
-  PRIMARY KEY (`idrearing`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE `recording` (
-  `idrecording` int NOT NULL,
-  `idexperiment` int DEFAULT NULL,
+CREATE TABLE `tblrecording` (
+  `recordingKey` bigint NOT NULL AUTO_INCREMENT,
+  `experimentKey` bigint DEFAULT NULL,
   `recSite` varchar(45) DEFAULT NULL,
   `recProbe` varchar(45) DEFAULT NULL,
   `spikeSorted` tinyint DEFAULT '0',
@@ -75,6 +75,5 @@ CREATE TABLE `recording` (
   `NMultiUnit` int DEFAULT NULL,
   `isBlackrock` tinyint DEFAULT '0',
   `oldSpikeFormat` tinyint DEFAULT '0',
-  PRIMARY KEY (`idrecording`)
+  PRIMARY KEY (`recordingKey`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-

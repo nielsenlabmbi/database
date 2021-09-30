@@ -1,0 +1,11 @@
+sample search to find experiment with multiple recording sites
+
+SELECT recording.idexperiment,                                                                                           
+	recording.recSite,                                                                                                      
+	experiment.idanimal                                                                                                     
+FROM (ferretphysiology.recording                                                                                         
+INNER JOIN  ferretphysiology.experiment                                                                                  
+ON recording.idexperiment=experiment.idexperiment)                                                                       
+WHERE recording.recSite IN ('V1','PSS')                                                                                  
+GROUP BY recording.idexperiment                                                                                          
+HAVING COUNT(*)=2            
