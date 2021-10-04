@@ -8,4 +8,10 @@ INNER JOIN  ferretphysiology.experiment
 ON recording.idexperiment=experiment.idexperiment)                                                                       
 WHERE recording.recSite IN ('V1','PSS')                                                                                  
 GROUP BY recording.idexperiment                                                                                          
-HAVING COUNT(*)=2            
+HAVING COUNT(*)=2 
+
+
+sample search to find experiment with particular looper variable
+WHERE looperName1 like '%ori%'
+as well as
+WHERE 'ori' in (looperName1,looperName2,looperName3)            
