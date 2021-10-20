@@ -15,11 +15,14 @@ Access: ferretDatabase on Z, no username
 - MySqldatabase: 
   - select 'new ODBC data source' under connect
   - select 'add'
-  - select
+  - select MySQL ODBC Ansi 8.0 driver
   - source and description name: ephysDatabase
   - select TCP/IP Server
   - provide username and password
   - select 'ferretphysiology' as database
+If the MySQL driver is not available, install it from here:
+https://dev.mysql.com/doc/connector-odbc/en/connector-odbc-installation-binary-windows.html
+It is sufficient to choose 'custom' and only install the ODBC connector (choose the newest one, X64 works).
 
 
 ## fields in ephys database
